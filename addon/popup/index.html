@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Regexer 1.0</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="popup.css">
+    <link href="../../fonts/SourceSansPro-Regular.ttf" rel="stylesheet"> 
+  </head>
+  <body>
+    <div class="error__message__container">
+      <div id="error-message" class="error__message hide">
+      </div>
+    </div>
+    <h1 class="addon__title">Regexer 1.0</h1>
+    <div class="addon__regex__input">
+      <label for="enter-regex">Enter your regex</label>
+      <input type="text" id="enter-regex" placeholder="Regex">
+    </div>
+    <div class="addon__text__input">
+      <label for="enter-text">Enter text to test</label>
+      <textarea rows="3" id="enter-text" placeholder="String to test"></textarea>
+    </div>
+    <button id="test" class="addon__test__button">Test</button>
+    <div id="results" class="results"></div>
+    <script src="popup.js"></script>
+    <script src="init.js"></script>
+  </body>
+</html>
