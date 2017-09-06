@@ -1,0 +1,127 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+}
+
+body {
+  width: 400px;
+  max-width: 400px;
+  padding: 25px 10px;
+  position: relative;
+  background-color: #FFFFFF;
+  color: rgb(107, 124, 147);
+}
+
+span {
+  padding: 0 1px;
+  margin: 1px 0;
+}
+
+label {
+  margin: 10px 0;
+}
+
+input, textarea {
+  display: block;
+  margin: 0;
+  padding: 4px 10px;
+  width: 100%;
+  font-family: sans-serif;
+  appearance: none;
+  box-shadow: none;
+  border-radius: 4px;
+  font-size: 15px;
+  line-height: 24px;
+  outline: none;
+  border: 1px solid #C2C2C2;
+  color: rgb(107, 124, 147);
+}
+
+textarea {
+  resize: vertical;
+}
+
+input:focus, textarea:focus {
+  border: 1px solid #1E4488;
+}
+
+input::placeholder {
+  color: rgb(107, 124, 147);
+}
+
+.addon__title {
+  color: #3ECF8E;
+  padding: 10px;
+}
+
+.addon__regex__input, .addon__text__input, .addon__test__button {
+  padding: 10px;
+  line-height: 40px;
+}
+
+.addon__test__button {
+  background-color: #3ECF8E;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  color: #FFFFFF;
+  white-space: nowrap;
+  line-height: 40px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .025em;
+  padding: 0 14px;
+  box-shadow: 0 4px 6px rgba(50,50,93,.11),0 1px 3px rgba(0,0,0,.08);
+}
+
+.addon__test__button:active {
+  transform: translateY(2px);
+  transition: transform 100ms cubic-bezier(0.160, 0.520, 0.705, 0.730);
+}
+
+.error__message__container {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 15px;
+  line-height: 16px;
+}
+
+.error__message {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FF4136;
+  color: #FFFFFF;
+  padding: 8px 10px;
+}
+
+.highlight__match {
+  background-color: #4D43FF;
+  color: #FFFFFF;
+}
+
+.results {
+  margin: 10px;
+  max-width: 400px;
+}
+
+.result__count__text {
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.hide {
+  display: none;
+}
