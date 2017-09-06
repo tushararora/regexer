@@ -1,15 +1,16 @@
 {
   "manifest_version": 2,
   "name": "Regxer",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Quickly check matches in a string against a regular expression.",
   "homepage_url": "https://github.com/tushararora/regexer",
   "icons": {
-    "32": "images/icon_32.png",
-    "48": "images/icon_48.png"
+    "32": "images/icon_32.svg",
+    "48": "images/icon_32.svg",
+    "96": "images/icon_32.svg"
   },
   "browser_action": {
-    "default_icon": "images/icon_32.png",
+    "default_icon": "images/icon_32.svg",
     "default_title": "Regexer",
     "default_popup": "addon/popup/index.html"
   }
