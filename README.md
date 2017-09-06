@@ -5,6 +5,7 @@ Web extension for Firefox to quickly check matches in a string against a regular
 ## Install
 
 [Regexer on Firefox Add-ons Store](https://addons.mozilla.org/en-US/firefox/addon/regxer/)
+
 [Find and install add-ons to add features to Firefox](https://support.mozilla.org/en-US/kb/find-and-install-add-ons-add-features-to-firefox)
 
 Click on `Add to Firefox` to install this web extension.

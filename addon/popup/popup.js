@@ -138,7 +138,7 @@ class Regexer {
    * @param  {String} regexStr
    * @return {RegExp}
    */
-  createRegex (regexStr) {
+  createRegex (regexStr, errorElement) {
     let regex
     try {
       if (regexStr.startsWith('/')) {
@@ -154,6 +154,7 @@ class Regexer {
       }
       return regex
     } catch (err) {
+      this.populateError(errorElement, 'Please enter a valid regular expression.')
       return null
     }
   }
@@ -200,7 +201,7 @@ class Regexer {
     } else if (text === '') {
       this.populateError(errorElement, 'Please enter some text to test.')
     } else {
-      this.populateResults(regex, text, resultsElement)
+      this.populateResults(regex, text, resultsElement, errorElement)
     }
   }
 
@@ -214,8 +215,8 @@ class Regexer {
    * @param  {String} text
    * @param {String} resultsElement
    */
-  populateResults (regex, text, resultsElement) {
-    regex = this.createRegex(regex)
+  populateResults (regex, text, resultsElement, errorElement) {
+    regex = this.createRegex(regex, errorElement)
 
     const results = this.getMatches(regex, text)
     if (results.length === 0 || results[0] === null) {
