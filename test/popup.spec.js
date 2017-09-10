@@ -15,6 +15,28 @@ describe('class Regexer', function () {
     sandbox.restore()
   })
 
+  describe('testing isObject, isString and isFunction method', function () {
+    it('should check for type object', function () {
+      expect(regexer.isObject({})).to.eql(true)
+      expect(regexer.isObject(null)).to.eql(false)
+      expect(regexer.isObject()).to.eql(false)
+    })
+
+    it('should check for type string', function () {
+      expect(regexer.isString('')).to.eql(true)
+      expect(regexer.isString(null)).to.eql(false)
+      expect(regexer.isString({})).to.eql(false)
+      expect(regexer.isString()).to.eql(false)
+    })
+
+    it('should check for type string', function () {
+      expect(regexer.isFunction(function () {})).to.eql(true)
+      expect(regexer.isFunction(null)).to.eql(false)
+      expect(regexer.isFunction({})).to.eql(false)
+      expect(regexer.isFunction()).to.eql(false)
+    })
+  })
+
   describe('testing populateError method', function () {
     it('should throw error when called with errorElement as null', function () {
       expect(function () {
@@ -68,19 +90,30 @@ describe('class Regexer', function () {
       }).to.throw(TypeError)
     })
 
+    it('should call removeChildNodes', function () {
+      sandbox.stub(regexer, 'appendChildNodesFromHTML')
+      const mock = sandbox.mock(regexer)
+      mock.expects('removeChildNodes').once()
+
+      regexer.setInnerHTML({}, '')
+
+      mock.verify()
+    })
+
+    it('should call appendChildNodesFromHTML', function () {
+      sandbox.stub(regexer, 'removeChildNodes')
+      const mock = sandbox.mock(regexer)
+      mock.expects('appendChildNodesFromHTML').once()
+
+      regexer.setInnerHTML({}, '')
+
+      mock.verify
+    })
+
     it('should throw error if html is not a string', function () {
       expect(function () {
         regexer.setInnerHTML({}, null)
       }).to.throw(TypeError)
-    })
-
-    it('should set target.innerHTML to html and return target', function () {
-      const target = {
-        innerHTML: ''
-      }
-      const html = '<p></p>'
-      const returnValue = regexer.setInnerHTML(target, html)
-      expect(target.innerHTML).to.equal(html)
     })
   })
   
