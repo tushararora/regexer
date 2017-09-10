@@ -69,7 +69,6 @@ class Regexer {
    * 
    * @method  setInnerHTML
    *
-   * 
    * @param {Object} target
    * @param {String} html
    */
@@ -79,8 +78,41 @@ class Regexer {
     } else if (!this.isString(html)) {
       throw new TypeError(`${html} should be a string`)
     }
-    target.innerHTML = html
+    this.removeChildNodes(target)
+    this.appendChildNodesFromHTML(target, html)
     return target
+  }
+
+  /**
+   * Removes all child nodes of 
+   * the target element
+   * 
+   * @method  removeChildNodes
+   *
+   * @param {Object} target
+   */
+  removeChildNodes (target) {
+    while (target.hasChildNodes()) {
+      target.removeChild(target.lastChild)
+    }
+  }
+
+
+  /**
+   * Append child nodes from HTML
+   * by first parsing them and then
+   * appending them to the target element
+   * 
+   * @method  appendChildNodesFromHTML
+   *
+   * @param {Object} target
+   * @param {String} html
+   */
+  appendChildNodesFromHTML (target, html) {
+    const dom = new DOMParser().parseFromString(html, 'text/html').body
+    while (dom.hasChildNodes()) {
+      target.appendChild(dom.firstChild)
+    }
   }
 
   /**
