@@ -12,7 +12,6 @@ Click on `Add to Firefox` to install this web extension.
 
 ## Browser/OS target
 
-This addon is supposed to run fine on all major OS platforms and targets `Firefox >=55.0`
 This addon is supposed to run fine on all major OS platforms and targets `Firefox >= 55.0`
 
 ## Screenshots
