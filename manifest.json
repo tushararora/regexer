@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Regxer",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Quickly check matches in a string against a regular expression.",
   "homepage_url": "https://github.com/tushararora/regexer",
   "icons": {
