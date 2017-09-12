@@ -37,6 +37,20 @@ describe('class Regexer', function () {
     })
   })
 
+  describe('testing setLocal and getLocal methods', function () {
+    it('setLocal should throw error if called with map other than object', function () {
+      expect(function () {
+        regexer.setLocal(null)
+      }).to.throw(TypeError)
+    })
+
+    it('getLocal should throw error if called with keys other than array', function () {
+      expect(function () {
+        regexer.getLocal(null)
+      }).to.throw(TypeError)
+    })
+  })
+
   describe('testing populateError method', function () {
     it('should throw error when called with errorElement as null', function () {
       expect(function () {
@@ -328,14 +342,14 @@ describe('class Regexer', function () {
     })
   })
 
-  describe('testing init method', function () {
+  describe('testing init and initialiseElementValues method', function () {
     let regexElement
     let textElement
     let errorElement
     let resultsElement
     let buttonElement
 
-    before(function () {
+    beforeEach(function () {
       regexElement = regexer.createElement('div')
       textElement = regexer.createElement('div')
       errorElement = regexer.createElement('div')
@@ -343,14 +357,38 @@ describe('class Regexer', function () {
       buttonElement = regexer.createElement('button')
     })
 
-    it('should initialize the addon by calling addListener', function () {
+    it('should initialise the addon by calling addListener', function () {
       const mock = sandbox.mock(regexer)
       sandbox.stub(regexer, 'handleOnClick')
-      mock.expects('addListener').once()
+      sandbox.stub(regexer, 'initialiseElementValues')
+      mock.expects('addListener').thrice()
 
       regexer.init(regexElement, textElement, errorElement, resultsElement, buttonElement)
 
       mock.verify()
+    })
+
+    it('should call initialiseElementValues', function () {
+      const mock = sandbox.mock(regexer)
+      sandbox.stub(regexer, 'addListener')
+      mock.expects('initialiseElementValues').once()
+
+      regexer.init(regexElement, textElement, errorElement, resultsElement, buttonElement)
+
+      mock.verify()
+    })
+
+    it('initialiseElementValues should set regexElement and textElement values', function (done) {
+      const resolvePromise = Promise.resolve({ regexStr: 'regexTest', textStr: 'textTest' })
+      const getLocal = sandbox.stub(regexer, 'getLocal').returns(aPromise)
+
+      regexer.initialiseElementValues(regexElement, textElement)
+
+      resolvePromise.then(() => {
+        expect(regexElement.value).to.eql('regexTest')
+        expect(textElement.value).to.eql('textTest')
+        done()
+      })
     })
   })
 })
