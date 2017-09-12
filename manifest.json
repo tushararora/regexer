@@ -9,6 +9,7 @@
     "48": "images/icon_32.svg",
     "96": "images/icon_32.svg"
   },
+  "permissions": ["storage"],
   "browser_action": {
     "default_icon": "images/icon_32.svg",
     "default_title": "Regexer",

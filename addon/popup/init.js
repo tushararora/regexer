@@ -1,4 +1,4 @@
-((window, document) => {
+((window, document, browser) => {
   'use strict'
 
   let regexElement = document.getElementById('enter-regex')
@@ -7,6 +7,6 @@
   let resultsElement = document.getElementById('results')
   let buttonElement = document.getElementById('test')
 
-  const regexerInstance = new Regexer()
+  const regexerInstance = new Regexer(browser)
   window.onload = regexerInstance.init(regexElement, textElement, errorElement, resultsElement, buttonElement)
-})(window, document)
+})(window, document, browser)

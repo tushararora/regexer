@@ -7,6 +7,9 @@
  * @class  Regexer
  */
 class Regexer {
+  constructor (browser) {
+    this._browser = browser
+  }
   /**
    * isObject
    * 
@@ -38,6 +41,40 @@ class Regexer {
    */
   isFunction (value) {
     return toString.call(value) === '[object Function]' || typeof value === 'function'
+  }
+
+  /**
+   * setLocal
+   *
+   * Set keys present in an object to browser storage
+   * (different from localStorage) 
+   * 
+   * @param {Object} hash [description]
+   * 
+   * @return {Promise}
+   */
+  setLocal (map) {
+    if (!this.isObject(map)) {
+      throw new TypeError(`${map} should be an object`)
+    }
+    return this._browser.storage.local.set(map)
+  }
+
+  /**
+   * getLocal
+   *
+   * Get results object from browser storage
+   * (different from localStorage)
+   * 
+   * @param  {Array} keys [description]
+   * 
+   * @return {Promise}
+   */
+  getLocal (keys) {
+    if (!Array.isArray(keys)) {
+      throw new TypeError(`${keys} should be an array`)
+    }
+    return this._browser.storage.local.get(keys)
   }
 
   /**
@@ -96,7 +133,6 @@ class Regexer {
       target.removeChild(target.lastChild)
     }
   }
-
 
   /**
    * Append child nodes from HTML
@@ -345,7 +381,25 @@ class Regexer {
   }
 
   /**
-   * Initialises the addon by calling addListener on buttonElement
+   * initialiseElementValues
+   *
+   * Initialises values on relevant elements
+   * 
+   * @param  {Object} regexElement
+   * @param  {Object} textElement
+   */
+  initialiseElementValues (regexElement, textElement) {
+    this.getLocal(['regexStr', 'textStr'])
+      .then(results => {
+        regexElement.value = results['regexStr'] || ''
+        textElement.value = results['textStr'] || ''
+      })
+  }
+
+  /**
+   * Initialises the addon by calling addListener on multiple
+   * relevant elements and setting initial values of
+   * 
    * 
    * @method  init
    *
@@ -359,5 +413,19 @@ class Regexer {
     this.addListener(buttonElement, () => {
       this.handleOnClick(regexElement, textElement, errorElement, resultsElement)
     }, 'click')
+
+    this.addListener(regexElement, (event) => {
+      this.setLocal({
+        'regexStr': event.target.value
+      })
+    }, 'change')
+
+    this.addListener(textElement, (event) => {
+      this.setLocal({
+        'textStr': event.target.value
+      })
+    }, 'change')
+
+    this.initialiseElementValues(regexElement, textElement)
   }
 }
