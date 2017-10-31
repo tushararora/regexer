@@ -16,7 +16,9 @@ This addon is supposed to run fine on all major OS platforms and targets `Firefo
 
 ## Screenshots
 
-Coming soon
+![Regex search](screenshots/regexer-search.png)
+![Regex error](screenshots/regexer-error-empty-regex.png)
+![Text error](screenshots/regexer-error-empty-text.png)
 
 ### Test
 
