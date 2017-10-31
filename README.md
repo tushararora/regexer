@@ -16,12 +16,16 @@ This addon is supposed to run fine on all major OS platforms and targets `Firefo
 
 ## Screenshots
 
+### Regex search
 ![Regex search](screenshots/regexer-search.png)
+
+### Empty regex error
 ![Regex error](screenshots/regexer-error-empty-regex.png)
+
+### Empty text error
 ![Text error](screenshots/regexer-error-empty-text.png)
 
-### Test
-
+## Test
 
 ```bash
 $ npm test
